@@ -5,3 +5,5 @@ seaborn>=0.13.2
 sphinx>=5,<8
 pydata-sphinx-theme
 sphinx-gallery
+scipy
+adjustText
