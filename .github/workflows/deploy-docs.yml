@@ -1,0 +1,40 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches:
+      - doc
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    uses: ./.github/workflows/docs.yml
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download HTML artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: html-docs
+          path: doc_build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: doc_build
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
