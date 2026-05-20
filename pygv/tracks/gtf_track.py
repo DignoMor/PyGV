@@ -251,8 +251,8 @@ class GtfTrack(AnnotationTrack):
                         break
 
             if (
-                type(self._allowed_features) is int
-                and len(self._lane_registries) >= self._allowed_features
+                type(self._allowed_feature_lanes) is int
+                and len(self._lane_registries) >= self._allowed_feature_lanes
                 and active_lane is None
             ):
                 continue
