@@ -6,3 +6,4 @@ alwaysApply: true
   - Specs are written in the `specs/` directory.
   - Specs are used to guide the development of the codebase. 
   - Development only proceeds after the user approved the spec.
+- Agent shall not make edits outside of the repository.
