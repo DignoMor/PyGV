@@ -296,8 +296,10 @@ class GenomeViewer(object):
             (x_start, 0),
             x_end - x_start,
             1,
-            color=color,
+            facecolor=color,
+            edgecolor="none",
             alpha=alpha,
+            linewidth=0,
             transform=ax.transData,
             zorder=-1,
         )

@@ -4,6 +4,7 @@ Highlight regions on all tracks
 ===============================
 
 By calling :meth:`~pygv.viewer.GenomeViewer.set_highlight_regions` method, you can highlight multiple regions on each track.
+You can also add a figure-level highlight with :meth:`~pygv.viewer.GenomeViewer.set_global_highlight_region`.
 """
 from pygv.viewer import GenomeViewer
 from pygv.tracks.bigwig_track import BigWigTrack
@@ -22,3 +23,6 @@ gv.add_track(track_2)
 # the first regions will be highlighted in yellow, the second one in red.
 gv.set_highlight_regions([116824346, 116845712], [116828474, 116846846], ["yellow", "red"])
 gv.plot("chr1", 116814729, 116857188)
+# add matching figure-level highlights spanning tracks and inter-track space
+gv.set_global_highlight_region(116824346, 116828474, color="yellow", alpha=0.5)
+gv.set_global_highlight_region(116845712, 116846846, color="red", alpha=0.5)
