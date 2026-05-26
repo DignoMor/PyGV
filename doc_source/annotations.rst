@@ -19,3 +19,8 @@ GTF/GFF
 -------
 .. automodule:: pygv.tracks.gtf_track
     :members:
+
+GWAS
+----
+.. automodule:: pygv.tracks.gwas_track
+    :members:

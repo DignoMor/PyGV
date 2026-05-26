@@ -17,6 +17,7 @@ from .bigwig_track import (
     PairedStrandSpecificTracks,
 )
 from .gtf_track import GtfTrack
+from .gwas_track import GWASTrack
 from .logo_track import DynseqTrack, LogoTrack
 from .track import (
     AnnotationTrack,
@@ -46,6 +47,7 @@ __all__ = [
     "PairedStrandSpecificTracks",
     "PairedStrandlessTrack",
     "GtfTrack",
+    "GWASTrack",
     "LogoTrack",
     "DynseqTrack",
 ]
