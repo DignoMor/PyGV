@@ -27,3 +27,17 @@
 
 - This utility checks path accessibility only; it does not validate file format or readability of file contents.
 - Remote checks are prefix-based and do not include a live network probe.
+
+## API Reference
+
+- Function: `check_accessibility(file_path: str, allow_remote: bool = False, raise_except: bool = True)`
+
+### Function: `check_accessibility(file_path: str, allow_remote: bool = False, raise_except: bool = True)`
+
+- Behavior
+  - Returns `True` for existing local paths.
+  - Returns `True` for remote prefixes only when remote access is explicitly allowed.
+  - Performs accessibility validation only; does not parse or inspect file contents.
+- Validation/error notes
+  - Inaccessible paths raise `ValueError` when `raise_except=True`.
+  - Inaccessible paths return `False` when `raise_except=False`.

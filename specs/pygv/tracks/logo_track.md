@@ -24,8 +24,37 @@ Defines sequence-logo-style tracks for nucleotide/protein motif visualization an
 - Value inputs can be NumPy arrays or DataFrames, with expected character columns.
 - Sequence-backed dynseq rendering requires valid sequence source compatibility with requested interval.
 
+## Internal Methods (Contracted)
+
+- `LogoTrack._get(self, chromosome, start, end)`
+  - Validates interval-length alignment against assigned logo values and returns interval coordinates with matrix data.
+- `LogoTrack._draw_track(self, chromosome, start, end, ax, index=1, **kwargs)`
+  - Renders logo glyphs from `_get(...)` output after standard numerical/base track setup.
+- `DynseqTrack._get(self, chromosome, start, end)`
+  - Cross-module contract that combines BigWig interval values with FASTA sequence to produce per-position logo matrices.
+- `DynseqTrack._draw_track(self, chromosome, start, end, ax, index=1, **kwargs)`
+  - Renders dynseq logos from derived matrices while honoring viewer lifecycle.
+
+Non-contracted private helpers and low-level matrix construction details are implementation details and intentionally excluded.
+
 ## Error Expectations
 
 - Inconsistent region span vs. logo matrix length should raise `ValueError`.
 - Inaccessible signal or fasta resources should fail early.
 - Invalid matrix shapes should fail with actionable messages.
+
+## API Reference
+
+- Classes: `LogoTrack`, `DynseqTrack`
+
+### Class: `LogoTrack`
+
+- Constructor:
+  - `LogoTrack.__init__(self, track: str = "", **kwargs)`
+- Public property:
+  - `values`
+
+### Class: `DynseqTrack`
+
+- Constructor:
+  - `DynseqTrack.__init__(self, track: str = "", seq_fasta: str = "", is_nucleotide: bool = True, **kwargs)`
