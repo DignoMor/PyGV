@@ -5,6 +5,7 @@ matplotlib
 seaborn
 pysam
 pandas
+scipy
 pybigwig
 pyfaidx
 pydantic>=2.0

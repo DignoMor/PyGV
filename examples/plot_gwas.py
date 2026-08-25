@@ -15,7 +15,7 @@ from pygv.viewer import GenomeViewer
 gv = GenomeViewer()
 
 gwas_track = GWASTrack(
-    "../examples/data/AD_Bellenguez_2022.GWAS.chr22.bed6poly",
+    "../examples/data/AD_Bellenguez_2022.GWAS.TREM2_loci.bed6poly",
     name="AD GWAS",
     max_val=28,
     y_transform=lambda pvalue: -1.0 * np.log10(pvalue),
