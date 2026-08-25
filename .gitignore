@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Local development environments
+.venv/
+
 # Distribution / packaging
 build/
 develop-eggs/
@@ -28,6 +31,7 @@ doc_doc/
 # IDEs
 .vscode/
 .idea/
+.cursor/
 
 # OS generated files
 .DS_Store
@@ -37,4 +41,3 @@ doc_doc/
 .Trashes
 ehthumbs.db
 Thumbs.db
-
