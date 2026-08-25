@@ -3,6 +3,7 @@ matplotlib
 seaborn
 pysam
 pandas
+scipy
 pybigwig
 pyfaidx
 setuptools
