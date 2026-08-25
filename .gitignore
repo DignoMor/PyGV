@@ -6,6 +6,10 @@ __pycache__/
 # Local development environments
 .venv/
 
+# Local agent tooling and work state
+.agents/
+.scratch/
+
 # Distribution / packaging
 build/
 develop-eggs/
