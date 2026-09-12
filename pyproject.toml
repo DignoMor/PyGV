@@ -9,6 +9,7 @@ description = "Python Genome Viewer"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "GPL-3.0-or-later"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
 keywords = ["genomics", "visualization", "matplotlib", "genome-browser"]
 authors = [
   { name = "Li Yao", email = "li@yaobio.com" },
@@ -83,6 +84,7 @@ include = [
   "/tests",
   "/README.md",
   "/LICENSE",
+  "/THIRD_PARTY_NOTICES.md",
   "/CHANGELOG.md",
 ]
 
