@@ -2,6 +2,7 @@ from warnings import warn
 
 import numpy as np
 import pandas as pd
+from pydantic import Field
 
 from pygv.utils import check_accessibility
 
@@ -20,6 +21,16 @@ class GWASTrack(NumericalTrack):
 
     _BED_COLUMNS = ("contig", "start", "end", "name", "score", "strand")
 
+    track: str = Field(description="Path to the GWAS BED6+ file")
+    significance_lines: list[float] = Field(
+        default_factory=list,
+        description="Raw p-values at which to draw horizontal significance lines.",
+    )
+    significance_line_kws: dict = Field(
+        default_factory=dict,
+        description="Matplotlib keyword arguments for the significance lines.",
+    )
+
     def __init__(
         self,
         track: str,
@@ -34,10 +45,9 @@ class GWASTrack(NumericalTrack):
             kwargs.setdefault("color", "grey")
         else:
             kwargs.setdefault("color", color)
-        super(GWASTrack, self).__init__(**kwargs)
+        super(GWASTrack, self).__init__(track=track, **kwargs)
         check_accessibility(track, allow_remote=False)
 
-        self.track = track
         self._marker_size = marker_size
         self._record_color = color
         self._warned_zero_rows = False
