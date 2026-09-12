@@ -1,5 +1,7 @@
 [build-system]
-requires = ["hatchling", "hatch-vcs"]
+# hatchling >=1.27 is required to interpret the PEP 639 license expression
+# and license-files table below; older versions would drop the notices.
+requires = ["hatchling>=1.27", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]

@@ -31,7 +31,7 @@ documentation gallery; they are not copied into the documentation repository.
 | `K562_DNase_hg38_ENCFF413AHU.chr19.bigWig` | ENCODE, K562 DNase-seq (file ENCFF413AHU) | As above |
 | `K562_H3K27ac_ENCFF779QTH.chr19.bigWig` | ENCODE, K562 H3K27ac ChIP-seq (file ENCFF779QTH) | As above |
 | `K562_GROcap_hg38_mn.chr1.bw`, `K562_GROcap_hg38_pl.chr1.bw` | ENCODE, K562 GRO-cap (Kruesi et al.) | As above |
-| `gencodeV24.sub.bed.gz` | GENCODE release 24, derived from Ensembl annotation | GENCODE/Ensembl data are freely available; cite the GENCODE Consortium |
+| `gencodeV24.sub.bed.gz` and its `.tbi` index | GENCODE release 24, derived from Ensembl annotation | GENCODE/Ensembl data are freely available; cite the GENCODE Consortium |
 | `AD_Bellenguez_2022.GWAS.TREM2_loci.bed6poly` | Bellenguez et al., *Nature Genetics* (2022), Alzheimer's disease GWAS summary statistics, TREM2 locus | Redistribution and reuse are governed by the terms of the originating publication and data provider; confirm these terms before redistribution |
 | `s03.chr22.bam`, `s03.chr22.bam.bai` | Small demonstration alignment | Bundled for illustration |
 | `demo.bedpe.gz`, `demo.bedpe.gz.tbi` | Small demonstration interaction file | Bundled for illustration |
