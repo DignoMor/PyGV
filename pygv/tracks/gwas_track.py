@@ -162,12 +162,9 @@ class GWASTrack(NumericalTrack):
         pvals = []
 
         if self._use_pysam:
-            try:
-                fetched = self._bed_obj.fetch(chromosome, start, end)
-            except ValueError:
-                # Tabix raises ValueError when the contig is absent from the index.
+            if chromosome not in self._bed_obj.contigs:
                 return np.asarray([], dtype=int), np.asarray([], dtype=float), []
-            for row in fetched:
+            for row in self._bed_obj.fetch(chromosome, start, end):
                 fields = row.split("\t")
                 if len(fields) < 6:
                     raise ValueError("GWASTrack requires BED6+ input.")
