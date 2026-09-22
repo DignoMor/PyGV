@@ -104,9 +104,14 @@ class GWASTrack(NumericalTrack):
         if pd.isna(start) or pd.isna(end) or pd.isna(pval):
             raise ValueError("GWASTrack requires numeric BED start/end/score fields.")
 
-        start = int(start)
-        end = int(end)
-        pval = float(pval)
+        try:
+            start = int(start)
+            end = int(end)
+            pval = float(pval)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(
+                "GWASTrack requires numeric BED start/end/score fields."
+            ) from exc
 
         if end - start != 1:
             raise ValueError(
@@ -158,27 +163,34 @@ class GWASTrack(NumericalTrack):
 
         if self._use_pysam:
             try:
-                for row in self._bed_obj.fetch(chromosome, start, end):
-                    fields = row.split("\t")
-                    if len(fields) < 6:
-                        raise ValueError("GWASTrack requires BED6+ input.")
-                    parsed = {
-                        "contig": fields[0],
-                        "start": fields[1],
-                        "end": fields[2],
-                        "name": fields[3],
-                        "score": fields[4],
-                        "strand": fields[5],
-                    }
-                    pos = int(parsed["start"])
-                    if start <= pos < end:
-                        self._validate_and_collect(parsed, records, xvals, pvals)
+                fetched = self._bed_obj.fetch(chromosome, start, end)
             except ValueError:
+                # Tabix raises ValueError when the contig is absent from the index.
                 return np.asarray([], dtype=int), np.asarray([], dtype=float), []
+            for row in fetched:
+                fields = row.split("\t")
+                if len(fields) < 6:
+                    raise ValueError("GWASTrack requires BED6+ input.")
+                parsed = {
+                    "contig": fields[0],
+                    "start": fields[1],
+                    "end": fields[2],
+                    "name": fields[3],
+                    "score": fields[4],
+                    "strand": fields[5],
+                }
+                pos = int(parsed["start"])
+                if start <= pos < end:
+                    self._validate_and_collect(parsed, records, xvals, pvals)
         else:
+            on_contig = self._bed_obj["contig"] == chromosome
+            if self._bed_obj.loc[on_contig, "start"].isna().any():
+                raise ValueError(
+                    "GWASTrack requires numeric BED start/end/score fields."
+                )
             sub = self._bed_obj.loc[
                 np.logical_and(
-                    self._bed_obj["contig"] == chromosome,
+                    on_contig,
                     np.logical_and(
                         self._bed_obj["start"] >= start, self._bed_obj["start"] < end
                     ),
