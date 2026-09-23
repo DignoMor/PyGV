@@ -55,3 +55,10 @@ gv.add_track(gencode_track)
 gv.plot("chr6", 12714999, 13292716)
 plt.show()
 ```
+
+## License
+
+PyGV is distributed under the GNU General Public License, version 3 or later
+(GPL-3.0-or-later). See [`LICENSE`](LICENSE). The sequence-logo code under
+`pygv/tracks/logomaker/` is third-party MIT-licensed material and example data
+carry their own terms; see [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
