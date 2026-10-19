@@ -1,6 +1,11 @@
 # Changelog
 
-## Unreleased (v2)
+## 0.2.1
+
+Version-alignment release accompanying documentation 0.2.1. There are no
+runtime changes since PyGV 0.2.0.
+
+## 0.2.0
 
 Pydantic models for track constructors, hatch-vcs packaging, and pixi-based CI.
 
